@@ -24,7 +24,7 @@ body { font-family: 'Arial', sans-serif; scroll-behavior: smooth; }
 
 /* Hero */
 #hero {
-  height:100vh; background:url('category-fashion.jpg') center/cover no-repeat;
+  height:100vh; background:url('bg.jpg') center/cover no-repeat;
   display:flex; justify-content:center; align-items:center; color:#fff; text-align:center;
 }
 .hero-content h1 { font-size:48px; margin-bottom:20px; }
@@ -83,4 +83,5 @@ footer .socials a:hover { color:#fff; }
 @media(max-width:768px){
   .category-card img, .feature-card, .product-card { width:90%; }
 }
+
 
