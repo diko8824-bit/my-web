@@ -1,72 +1,162 @@
+:root {
+    --bg-color: #f9f9f9;
+    --text-color: #333;
+    --card-bg: #fff;
+    --navbar-bg: rgba(41, 128, 185, 0.9);
+    --navbar-scrolled: rgba(41, 128, 185, 1);
+    --hero-bg: url('images/hero-bg.jpg');
+    --hero-gradient: linear-gradient(135deg, #2980b9, #27ae60);
+    --section-bg: #f9f9f9;
+    --button-bg: #2980b9;
+    --button-text: #fff;
+    --footer-bg: #34495e;
+    --footer-text: #fff;
+    --border-color: #ddd;
+}
+
+[data-theme="dark"] {
+    --bg-color: #34495e;
+    --text-color: #f9f9f9;
+    --card-bg: #2c3e50;
+    --navbar-bg: rgba(39, 174, 96, 0.9);
+    --navbar-scrolled: rgba(39, 174, 96, 1);
+    --hero-bg: url('images/hero-bg.jpg');
+    --hero-gradient: linear-gradient(135deg, #1e3c72, #27ae60);
+    --section-bg: #2c3e50;
+    --button-bg: #2980b9;
+    --button-text: #f9f9f9;
+    --footer-bg: #34495e;
+    --footer-text: #f9f9f9;
+    --border-color: #555;
+}
+
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
 }
 
 .navbar {
-    background-color: rgba(0, 123, 255, 0.9);
+    background-color: var(--navbar-bg);
     transition: background-color 0.3s ease;
 }
 
 .navbar.scrolled {
-    background-color: rgba(0, 86, 179, 1);
+    background-color: var(--navbar-scrolled);
+}
+
+.navbar-brand, .nav-link {
+    color: var(--button-text) !important;
 }
 
 .hero {
-    background: linear-gradient(135deg, #007bff, #00d4ff);
+    background: var(--hero-bg), var(--hero-gradient);
     min-height: 500px;
     display: flex;
     align-items: center;
+    background-size: cover;
+    background-position: center;
+    color: var(--text-color);
+}
+
+.hero h1, .hero p {
+    color: var(--text-color);
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--button-text);
 }
 
 .section {
     padding: 80px 0;
+    background-color: var(--section-bg);
 }
 
-.portfolio-item {
-    margin-bottom: 30px;
-    transition: opacity 0.3s ease;
+.bg-light {
+    background-color: var(--section-bg) !important;
 }
 
-.portfolio-item.hidden {
-    display: none;
-}
-
-.portfolio-item .card {
+.card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: var(--text-color);
 }
 
-.portfolio-item .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
-.filter-buttons .btn {
-    margin: 0 5px;
+.card-title, .card-text, .card-body h6 {
+    color: var(--text-color);
 }
 
-.filter-buttons .btn.active {
-    background-color: #007bff;
-    color: white;
+.portfolio-card {
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
 }
 
-.contact-info {
-    list-style: none;
-    padding: 0;
+.btn-primary {
+    background-color: var(--button-bg);
+    border-color: var(--button-bg);
+    color: var(--button-text);
 }
 
-.contact-info li {
-    margin-bottom: 15px;
+.form-control {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
 }
 
-/* Animations */
-.animate__fadeIn {
-    animation: fadeIn 1s ease-in;
+.form-control::placeholder {
+    color: var(--text-color);
+    opacity: 0.7;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+.review-card {
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+}
+
+footer.bg-dark {
+    background-color: var(--footer-bg) !important;
+    color: var(--footer-text);
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    color: var(--button-text);
+    transition: all 0.3s ease;
+}
+
+#theme-toggle i {
+    font-size: 1.2rem;
+}
+
+.theme-toggle-animate {
+    animation: rotateFade 0.5s ease-in-out;
+}
+
+@keyframes rotateFade {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0.5;
+    }
+    50% {
+        transform: rotate(180deg);
+        opacity: 0;
+    }
+    100% {
+        transform: rotate(360deg);
+        opacity: 1;
+    }
 }
 
 @media (max-width: 768px) {
@@ -78,5 +168,9 @@ body {
     }
     .display-4 {
         font-size: 2.5rem;
+    }
+    .profile-img {
+        width: 100px;
+        height: 100px;
     }
 }
