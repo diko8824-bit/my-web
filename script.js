@@ -1,4 +1,5 @@
-// Smooth scrolling for navbar links
+AOS.init({ duration: 800 });
+
 document.querySelectorAll('.navbar-nav a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -8,7 +9,6 @@ document.querySelectorAll('.navbar-nav a').forEach(anchor => {
     });
 });
 
-// Navbar background change on scroll
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 50) {
@@ -18,28 +18,27 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Typed.js for hero section
 const typed = new Typed('.typed-text', {
-    strings: ['Web Designer', 'Freelancer'],
+    strings: ['My Portfolio', 'Explore My Work', 'Connect with Me'],
     typeSpeed: 50,
     backSpeed: 30,
     backDelay: 2000,
     loop: true
 });
 
-// Portfolio filter
-document.querySelectorAll('.filter-btn').forEach(button => {
-    button.addEventListener('click', function() {
-        const filter = this.getAttribute('data-filter');
-        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-        this.classList.add('active');
-
-        document.querySelectorAll('.portfolio-item').forEach(item => {
-            if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                item.classList.remove('hidden');
-            } else {
-                item.classList.add('hidden');
-            }
-        });
-    });
+const themeToggle = document.getElementById('theme-toggle');
+themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    themeToggle.classList.add('theme-toggle-animate');
+    document.documentElement.setAttribute('data-theme', newTheme);
+    themeToggle.innerHTML = newTheme === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+    localStorage.setItem('theme', newTheme);
+    setTimeout(() => {
+        themeToggle.classList.remove('theme-toggle-animate');
+    }, 500);
 });
+
+const savedTheme = localStorage.getItem('theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme);
+themeToggle.innerHTML = savedTheme === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
